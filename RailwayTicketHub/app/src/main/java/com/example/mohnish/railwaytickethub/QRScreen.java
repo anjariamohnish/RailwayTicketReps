@@ -50,10 +50,6 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
         setContentView(R.layout.activity_qrscreen);
         getSupportActionBar().hide();
         InitializeActivty();
-
-        Log.d("TAG", "Called ON Create");
-
-
     }
 
     @Override
@@ -258,7 +254,7 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
     }
 
 
-    synchronized void SetListner() {
+    private synchronized void SetListner() {
 
 
         databaseReference.child("counter").child("screenSession").child(LoginInfo.sessionKey).child("sessionData").addChildEventListener(new ChildEventListener() {
@@ -269,9 +265,19 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String recivedValue = (String) dataSnapshot.getValue();
+                if (recivedValue.equals("nil")) {
+                    qrImageView.setVisibility(View.INVISIBLE);
+                } else {
+                    qrImageView.setVisibility(View.VISIBLE);
+                }
+                try {
+                    Bitmap qrCode = TextToImageEncode(recivedValue);
+                    qrImageView.setImageBitmap(qrCode);
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
 
-            Log.d("TAG","1");
-            Log.d("TAG",dataSnapshot.getValue().toString());
             }
 
             @Override
@@ -290,33 +296,6 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
             }
         });
 
-        /*databaseReference.child("counter").child("screenSession").child(LoginInfo.sessionKey).child("sessionData").child("url").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("TAG", String.valueOf(dataSnapshot));
-                // recd value
-           //     String recivedValue = (String) dataSnapshot.getValue();
-                String recivedValue="nil";
-                if (recivedValue.equals("nil")) {
-                    qrImageView.setVisibility(View.INVISIBLE);
-                } else {
-                    qrImageView.setVisibility(View.VISIBLE);
-                }
-                try {
-                    Bitmap qrCode = TextToImageEncode(recivedValue);
-                    qrImageView.setImageBitmap(qrCode);
-                } catch (WriterException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
 
 
     }

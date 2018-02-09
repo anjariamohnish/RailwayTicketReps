@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void ChangeActivity() {
+    private void ChangeActivity() {
         listnerReference.child("screenSession").child(LoginInfo.sessionKey).removeEventListener(listner);
         startActivity(new Intent(MainActivity.this, QRScreen.class));
 
