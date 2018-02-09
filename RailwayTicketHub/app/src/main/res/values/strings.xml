@@ -3,4 +3,8 @@
     <string name="pin_content_desc">PIN input field</string>
     <string name="pin_label_text">PIN</string>
 
+    <!-- AdMob ad unit IDs -->
+    <string name="admob_app_id">ca-app-pub-5472883936789408~9040064464</string>
+    <string name="banner_home_footer">ca-app-pub-5472883936789408/5647614369</string>
+
 </resources>

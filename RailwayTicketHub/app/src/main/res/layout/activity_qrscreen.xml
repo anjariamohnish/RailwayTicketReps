@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/jj"
 
@@ -18,6 +19,8 @@
         android:gravity="center_horizontal"
         android:text="Ad Banner"
         android:textSize="40dp" />
+
+
 
 
     <FrameLayout
@@ -116,14 +119,22 @@
         </LinearLayout>
 
 
-        <TextView
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_home_footer">
+        </com.google.android.gms.ads.AdView>
+
+       <!-- <TextView
             android:id="@+id/textView2"
             android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Ad Banner2"
-            android:textSize="40dp" />
+            android:textSize="40dp" />-->
     </LinearLayout>
 
 

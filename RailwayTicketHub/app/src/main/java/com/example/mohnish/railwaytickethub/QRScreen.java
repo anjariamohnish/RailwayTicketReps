@@ -12,7 +12,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.ChildEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -43,13 +49,20 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     Hashtable<Integer, String> hashtable = new Hashtable<>();
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscreen);
         getSupportActionBar().hide();
+        MobileAds.initialize(this,getString(R.string.admob_app_id));
         InitializeActivty();
+        mAdView = findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        mAdView.loadAd(adRequest);
+
+
     }
 
     @Override
