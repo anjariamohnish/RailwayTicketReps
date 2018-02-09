@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RailwayTicket</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">login</string>
+    <string name="title_activity_register">register</string>
+    <string name="title_activity_customer_details">CustomerDetails</string>
+    <string name="title_activity_forgotpassword">forgotpassword</string>
+    <string name="title_activity_forgot_password">ForgotPassword</string>
+    <string name="title_activity_camera_surface">cameraSurface</string>
+</resources>
