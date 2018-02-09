@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText mPinForthDigitEditText;
     private EditText mPinFifthDigitEditText;
     Hashtable<Integer, String> hashtable = new Hashtable<>();
-
+    DatabaseReference listnerReference;
+    ChildEventListener listner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference("counter");
+        final DatabaseReference databaseReference = firebaseDatabase.getReference("counter");
         UUID uuid = UUID.randomUUID();
         String key = uuid.toString().toUpperCase();
         mPinFirstDigitEditText.setText(key.substring(0, 1));
@@ -76,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.child("screenSession").child(LoginInfo.sessionKey).child("sessionData").child("url").setValue("nil");
 
 
-        DatabaseReference listnerReference = firebaseDatabase.getReference("counter");
-        listnerReference.child("screenSession").child(LoginInfo.sessionKey).addChildEventListener(new ChildEventListener() {
+        listnerReference = firebaseDatabase.getReference("counter");
+        listner = listnerReference.child("screenSession").child(LoginInfo.sessionKey).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -86,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 Log.d("TAG", String.valueOf(dataSnapshot));
-                startActivity(new Intent(MainActivity.this, QRScreen.class));
-                // key = empId and value = empIdval
-
+                 ChangeActivity();
             }
 
             @Override
@@ -113,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void ChangeActivity() {
+        listnerReference.child("screenSession").child(LoginInfo.sessionKey).removeEventListener(listner);
+        startActivity(new Intent(MainActivity.this, QRScreen.class));
+
+    }
+
     @Override
     public void onBackPressed() {
         // od nothing
@@ -122,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.d("TAG", "ONDESTROy");
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("counter");
         databaseReference.child("screenSession").child(LoginInfo.sessionKey).removeValue();

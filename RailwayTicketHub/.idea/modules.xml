@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RailwayTicketHub.iml" filepath="$PROJECT_DIR$/RailwayTicketHub.iml" />
-      <module fileurl="file://C:\Users\mohnish\Desktop\RailwayTicketReps\RailwayTicketHub\RailwayTicketHub.iml" filepath="C:\Users\mohnish\Desktop\RailwayTicketReps\RailwayTicketHub\RailwayTicketHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\mohnish\Desktop\RailwayTicketReps\RailwayTicketHub\app\app.iml" filepath="C:\Users\mohnish\Desktop\RailwayTicketReps\RailwayTicketHub\app\app.iml" />
     </modules>
   </component>
 </project>

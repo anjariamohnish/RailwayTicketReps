@@ -11,26 +11,32 @@
 
 
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Ad Banner"
-            android:textSize="40dp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Ad Banner"
+        android:textSize="40dp" />
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_column="0"
-        android:layout_marginBottom="220dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
         android:layout_row="5"
+        android:id="@+id/qrframe"
         android:background="@drawable/layout_border">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@color/QRCodeWhiteColor" />
     </FrameLayout>
 
     <LinearLayout
@@ -41,73 +47,73 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                android:orientation="horizontal"
-        android:layout_centerHorizontal="true">
-
-        <EditText
-            android:id="@+id/pin_first_edittext"
-            style="@style/pin_edittext_style2"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc"
-            android:imeOptions="actionNext" />
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
 
-        <EditText
-            android:id="@+id/pin_second_edittext"
-            style="@style/pin_edittext_style2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/pin_first_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc"
+                android:imeOptions="actionNext" />
 
-        <EditText
-            android:id="@+id/pin_third_edittext"
-            style="@style/pin_edittext_style2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/pin_second_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc" />
 
-        <EditText
-            android:id="@+id/pin_forth_edittext"
-            style="@style/pin_edittext_style2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc" />
-        <EditText
-            android:id="@+id/no"
-            style="@style/pin_edittext_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textStyle="bold"
-            android:background="@null"
-            android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/pin_third_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc" />
 
-        <EditText
-            android:id="@+id/pin_fifth_edittext"
-            style="@style/pin_edittext_style2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/pin_forth_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/no"
+                style="@style/pin_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textStyle="bold"
+                android:background="@null"
+                android:contentDescription="@string/pin_content_desc" />
+
+            <EditText
+                android:id="@+id/pin_fifth_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc" />
 
 
 
-        <EditText
-            android:id="@+id/pin_sixth_edittext"
-            style="@style/pin_edittext_style2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc" />
-        <EditText
-            android:id="@+id/pin_seveth_edittext"
-            style="@style/pin_edittext_style2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/pin_sixth_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc" />
+            <EditText
+                android:id="@+id/pin_seveth_edittext"
+                style="@style/pin_edittext_style2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/pin_content_desc" />
 
-    </LinearLayout>
+        </LinearLayout>
 
 
         <TextView
