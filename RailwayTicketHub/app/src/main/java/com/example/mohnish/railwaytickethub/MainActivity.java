@@ -74,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
         session.put("secretCode", key.substring(0, 5));
         session.put("employeeId", "nil");
         databaseReference.child("screenSession").child(LoginInfo.sessionKey).setValue(session);
-        databaseReference.child("screenSession").child(LoginInfo.sessionKey).child("sessionData").child("url").setValue("nil");
+        HashMap<String,String> sessionData=new HashMap<>();
+        sessionData.put("url","nil");
+        sessionData.put("ticketId","nil");
+        databaseReference.child("screenSession").child(LoginInfo.sessionKey).child("sessionData").setValue(sessionData);
 
 
         listnerReference = firebaseDatabase.getReference("counter");
