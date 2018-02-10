@@ -99,18 +99,23 @@ public class MainActivity extends AppCompatActivity {
                 map.put("expiry", dateFormat.format(calendar.getTime()));
                 map.put("flag", "C");
                 map.put("passengerId", "nil");
-                databaseReference.child(databaseReference.push().getKey()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                final String ticketId=databaseReference.push().getKey();
+                databaseReference.child(ticketId).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             String rawUrl = "from=" + map.get("from") + ";to=" + map.get("to") + ";class=" + map.get("class") + ";returnStatus=" + map.get("returnStatus") + ";counterEmployee=" + map.get("counterEmployee") + ";dateTime=" + map.get("dateTime") + ";expiry=" + map.get("expiry") + ";flag=" + map.get("flag") + ";passengerId=" + map.get("passengerId") + "";
                             String key = String.valueOf(System.currentTimeMillis()).substring(0, 12);
                             String url = null;
+                            Log.d("TAG",key);
                             try {
                                 url = EncryptionHelper.cipher(key, rawUrl) + key;
                                 // send url to secondary screen adding to db
                                 final DatabaseReference ref = firebaseDatabase.getReference("counter");
-                                ref.child("screenSession").child(LoginInfo.session_id).child("sessionData").child("url").setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                HashMap<String,String> sessionData=new HashMap<>();
+                                sessionData.put("url",url);
+                                sessionData.put("ticketId",ticketId);
+                                ref.child("screenSession").child(LoginInfo.session_id).child("sessionData").setValue(sessionData).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
