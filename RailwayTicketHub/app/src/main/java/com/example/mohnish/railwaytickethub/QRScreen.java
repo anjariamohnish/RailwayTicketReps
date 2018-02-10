@@ -1,7 +1,11 @@
 package com.example.mohnish.railwaytickethub;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -50,12 +54,15 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
     private DatabaseReference databaseReference;
     Hashtable<Integer, String> hashtable = new Hashtable<>();
     private AdView mAdView;
+    String ticketId = null;
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscreen);
         getSupportActionBar().hide();
-        MobileAds.initialize(this,getString(R.string.admob_app_id));
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
         InitializeActivty();
         mAdView = findViewById(R.id.adView);
 
@@ -182,12 +189,13 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
             } else if (hashtable.size() == 6) {
                 mPinSeventhDigitEditText.requestFocus();
             } else if (hashtable.size() == 7) {
-                final ProgressDialog progressDialog = new ProgressDialog(QRScreen.this);
+                progressDialog = new ProgressDialog(QRScreen.this);
                 progressDialog.setMessage("Proccesing....");
                 progressDialog.setTitle("");
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog.show();
-                final String secretCode = hashtable.get(1) + hashtable.get(2) + hashtable.get(3) + hashtable.get(4) + hashtable.get(5) + hashtable.get(6) + hashtable.get(7);
+                String secretCode = hashtable.get(1) + hashtable.get(2) + hashtable.get(3) + hashtable.get(4) + hashtable.get(5) + hashtable.get(6) + hashtable.get(7);
+               CreateAlertBox(secretCode);
 
             }
         }
@@ -267,6 +275,40 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
     }
 
 
+    private void CreateAlertBox(final String code) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Use This Code : " + code)
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        databaseReference.child("transaction").child(ticketId).child("passengerId").setValue(code);
+
+                        databaseReference.child("counter").child("screenSession").child(LoginInfo.sessionKey).child("sessionData").child("url").setValue("nil");
+                        databaseReference.child("counter").child("screenSession").child(LoginInfo.sessionKey).child("sessionData").child("ticketId").setValue("nil");
+
+                        progressDialog.dismiss();
+                        Snackbar.make(findViewById(android.R.id.content), "Your Trip is Started", Snackbar.LENGTH_SHORT)
+                                .show();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        hashtable.clear();
+                        progressDialog.dismiss();
+
+                        dialog.cancel();
+                    }
+                });
+
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("Confirmation");
+        alert.show();
+    }
+
     private synchronized void SetListner() {
 
 
@@ -278,18 +320,28 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                String recivedValue = (String) dataSnapshot.getValue();
-                if (recivedValue.equals("nil")) {
-                    qrImageView.setVisibility(View.INVISIBLE);
-                } else {
-                    qrImageView.setVisibility(View.VISIBLE);
+
+                if (dataSnapshot.getKey().equals("ticketId")) {
+                    ticketId = (String) dataSnapshot.getValue();
+
                 }
-                try {
-                    Bitmap qrCode = TextToImageEncode(recivedValue);
-                    qrImageView.setImageBitmap(qrCode);
-                } catch (WriterException e) {
-                    e.printStackTrace();
+
+                if (dataSnapshot.getKey().equals("url")) {
+                    String recivedValue = (String) dataSnapshot.getValue();
+                    if (recivedValue.equals("nil")) {
+                        qrImageView.setVisibility(View.INVISIBLE);
+                    } else {
+                        qrImageView.setVisibility(View.VISIBLE);
+                    }
+                    try {
+                        Bitmap qrCode = TextToImageEncode(recivedValue);
+                        qrImageView.setImageBitmap(qrCode);
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
+
                 }
+
 
             }
 
@@ -308,7 +360,6 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
 
             }
         });
-
 
 
     }
