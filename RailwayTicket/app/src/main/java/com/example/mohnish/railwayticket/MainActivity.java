@@ -104,12 +104,15 @@ public class MainActivity extends AppCompatActivity
 
 
                 String recd = result.getContents();
+                Log.d("TAG",recd);
                 try {
 
-                    String decrypted = EncryptionHelper.decipher(recd.substring(recd.length() - 16, recd.length()), recd.substring(0, recd.length() - 16));
+                    String decrypted = EncryptionHelper.decipher(recd.substring(recd.length() - 12, recd.length()), recd.substring(0, recd.length() - 12));
                     String[] qrData=decrypted.split(";");
                     HashMap<String, String> hm = new HashMap<String, String>();
-
+                for (String d:qrData){
+                    Log.d("TAG",d);
+                }
 
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, String.valueOf(e), Toast.LENGTH_LONG).show();
