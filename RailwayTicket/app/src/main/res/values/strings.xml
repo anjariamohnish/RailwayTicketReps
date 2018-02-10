@@ -11,4 +11,5 @@
     <string name="title_activity_forgotpassword">forgotpassword</string>
     <string name="title_activity_forgot_password">ForgotPassword</string>
     <string name="title_activity_camera_surface">cameraSurface</string>
+
 </resources>

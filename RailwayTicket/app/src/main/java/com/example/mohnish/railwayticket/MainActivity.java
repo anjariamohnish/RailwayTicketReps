@@ -23,7 +23,14 @@ import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,6 +89,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -104,15 +112,24 @@ public class MainActivity extends AppCompatActivity
 
 
                 String recd = result.getContents();
-                Log.d("TAG",recd);
+                Log.d("TAG", recd);
                 try {
 
                     String decrypted = EncryptionHelper.decipher(recd.substring(recd.length() - 12, recd.length()), recd.substring(0, recd.length() - 12));
-                    String[] qrData=decrypted.split(";");
+                    String[] qrData = decrypted.split(";");
                     HashMap<String, String> hm = new HashMap<String, String>();
-                for (String d:qrData){
-                    Log.d("TAG",d);
-                }
+
+                    hm.put("from", qrData[0]);
+                    hm.put("to", qrData[1]);
+                    hm.put("class", qrData[2]);
+                    hm.put("returnStatus", qrData[3]);
+                    hm.put("counterEmployee", qrData[4]);
+                    hm.put("dateTime", qrData[5]);
+                    hm.put("expiry", qrData[6]);
+                    hm.put("flag", qrData[7]);
+                    hm.put("passengerId", qrData[8]);
+
+                    StoreLocally(hm);
 
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, String.valueOf(e), Toast.LENGTH_LONG).show();
@@ -120,7 +137,7 @@ public class MainActivity extends AppCompatActivity
 
 
                 // store in local and wait for sync with firebase !!
-                //   Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+
 
             }
         }
@@ -158,4 +175,52 @@ public class MainActivity extends AppCompatActivity
         }
         return data;
     }
+
+    private void StoreLocally(HashMap map) throws IOException {
+
+        String FILENAME = map.get("from").toString().replace("from=", "") + "-" + map.get("to").toString().replace("to=", "") + " " + map.get("dateTime").toString().replace("dateTime=", "").replace("/", "").replace(".", "").replace(":", "").trim();
+        String string = map.get("from") + ";" + map.get("to") + ";" + map.get("class") + ";" + map.get("returnStatus") + ";" + map.get("counterEmployee") + ";" + map.get("dateTime") + ";" + map.get("expiry") + ";" + map.get("flag") + ";" + map.get("passengerId");
+
+        FileOutputStream out = openFileOutput(FILENAME, MODE_PRIVATE);
+        out.write(string.getBytes());
+        out.close();
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.AddFile(FILENAME);
+
+
+    }
+
+
+    /*private  void ReadLocally(String file)
+    {
+        try {
+            // Open stream to read file.
+            FileInputStream in = this.openFileInput(file);
+
+            BufferedReader br= new BufferedReader(new InputStreamReader(in));
+
+            StringBuilder sb= new StringBuilder();
+            String s= null;
+            while((s= br.readLine())!= null)  {
+                sb.append(s).append("\n");
+            }
+          Toast.makeText(this,sb.toString(),Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Toast.makeText(this,"Error:"+ e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<String> files=db.GetFile();
+        for (String d:files){
+            Log.d("TAG",d);
+        }
+
+
+
+
+    }
+*/
+
 }
