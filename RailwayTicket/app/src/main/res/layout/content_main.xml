@@ -4,17 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/content_main"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.mohnish.railwayticket.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="133dp"
-        app:srcCompat="@drawable/ic_qr_code_scan"
-        tools:ignore="VectorDrawableCompat" />
+
 </RelativeLayout>
