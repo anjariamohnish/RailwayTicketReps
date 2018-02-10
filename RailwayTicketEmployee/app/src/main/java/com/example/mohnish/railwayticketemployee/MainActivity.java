@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton classButton = null;
     private CheckBox returnCheckBox;
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    StationDatabase stationDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, SecondaryScreenLogin.class));
         }
         IntializeActivity();
+        final ProgressDialog myDialog = new ProgressDialog(MainActivity.this);
 
 
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
@@ -117,19 +118,30 @@ public class MainActivity extends AppCompatActivity {
                                             ref.child("screenSession").child(LoginInfo.session_id).child("sessionData").child("url").addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                                    Log.d("TAG", String.valueOf(dataSnapshot));
-                                                    final ProgressDialog myDialog = new ProgressDialog(MainActivity.this);
-                                                    myDialog.setMessage("Waiting For Customer To Scan...");
-                                                    myDialog.setCancelable(false);
+
+                                                    myDialog.setMessage("Waiting For Customer To Scan Code...");
+                                                    //myDialog.setCancelable(false);
                                                     myDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel Transaction", new DialogInterface.OnClickListener() {
 
                                                         @Override
                                                         public void onClick(DialogInterface dialogInterface, int i) {
                                                             myDialog.dismiss();
-                                                            // make nil
+                                                            ref.child("screenSession").child(LoginInfo.session_id).child("sessionData").child("url").setValue("nil");
+                                                            progressDialog.dismiss();
                                                         }
                                                     });
                                                     myDialog.show();
+
+                                                    if (dataSnapshot.getValue().toString().equals("nil")) {
+                                                        Log.d("TAG", "IN");
+                                                        from.setText("");
+                                                        to.setText("");
+                                                        if (returnCheckBox.isChecked()) {
+                                                            returnCheckBox.toggle();
+                                                        }
+                                                        progressDialog.dismiss();
+                                                        myDialog.dismiss();
+                                                    }
                                                 }
 
                                                 @Override
@@ -137,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                 }
                                             });
+
                                         } else {
                                             // error
                                         }
