@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,8 +20,11 @@ import android.widget.RadioGroup;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -103,12 +107,23 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 url = EncryptionHelper.cipher(key, rawUrl) + key;
                                 // send url to secondary screen adding to db
-                                DatabaseReference ref = firebaseDatabase.getReference("counter");
+                                final DatabaseReference ref = firebaseDatabase.getReference("counter");
                                 ref.child("screenSession").child(LoginInfo.session_id).child("sessionData").child("url").setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             // make counter wait for scan and pin
+                                            ref.child("screenSession").child(LoginInfo.session_id).child("sessionData").child("url").addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    Log.d("TAG", String.valueOf(dataSnapshot));
+                                                }
+
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
+
+                                                }
+                                            });
                                         } else {
                                             // error
                                         }
