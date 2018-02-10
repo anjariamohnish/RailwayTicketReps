@@ -174,7 +174,7 @@ public class SecondaryScreenLogin extends AppCompatActivity implements TextWatch
                             for (DataSnapshot issue : dataSnapshot.getChildren()) {
                                 LoginInfo.session_id = issue.getKey();
                                 LoginInfo.secretCode = secretCode;
-                                databaseReference.child("screenSession").child(issue.getKey()).child("empId").setValue(LoginInfo.empId);
+                                databaseReference.child("screenSession").child(issue.getKey()).child("employeeId").setValue(LoginInfo.empId);
                                 progressDialog.dismiss();
                                 startActivity(new Intent(SecondaryScreenLogin.this,MainActivity.class));
                             }

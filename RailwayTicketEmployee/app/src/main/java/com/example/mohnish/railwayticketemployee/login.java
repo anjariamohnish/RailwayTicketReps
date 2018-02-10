@@ -144,7 +144,7 @@ public class login extends AppCompatActivity {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
 
                         LoginInfo.empId = data.getKey();
-                        stationDatabase stndb = new stationDatabase();
+                        StationDatabase stndb = new StationDatabase();
                         stndb.GetStationDatabase();
                         notify();
                     }

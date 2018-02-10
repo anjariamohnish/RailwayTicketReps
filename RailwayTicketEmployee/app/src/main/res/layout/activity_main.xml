@@ -13,43 +13,20 @@
         android:orientation="vertical">
 
 
-        <Space
+
+        <AutoCompleteTextView
+            android:id="@+id/from"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="wrap_content"
+           />
 
-        <android.support.design.widget.TextInputLayout
+
+        <AutoCompleteTextView
+            android:id="@+id/to"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            />
 
-            <AutoCompleteTextView
-                android:id="@+id/from"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_weight="1" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <AutoCompleteTextView
-                android:id="@+id/to"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_weight="1" />
-
-        </android.support.design.widget.TextInputLayout>
 
 
         <RadioGroup

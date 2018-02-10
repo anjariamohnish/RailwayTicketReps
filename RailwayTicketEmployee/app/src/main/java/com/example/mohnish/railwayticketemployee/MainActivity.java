@@ -1,6 +1,7 @@
 package com.example.mohnish.railwayticketemployee;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton classButton = null;
     private CheckBox returnCheckBox;
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
+    StationDatabase stationDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +118,18 @@ public class MainActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                                     Log.d("TAG", String.valueOf(dataSnapshot));
+                                                    final ProgressDialog myDialog = new ProgressDialog(MainActivity.this);
+                                                    myDialog.setMessage("Waiting For Customer To Scan...");
+                                                    myDialog.setCancelable(false);
+                                                    myDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel Transaction", new DialogInterface.OnClickListener() {
+
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            myDialog.dismiss();
+                                                            // make nil
+                                                        }
+                                                    });
+                                                    myDialog.show();
                                                 }
 
                                                 @Override
@@ -147,12 +160,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void IntializeActivity() {
+
+
         from = findViewById(R.id.from);
         to = findViewById(R.id.to);
         classGroup = findViewById(R.id.classGroup);
         returnCheckBox = findViewById(R.id.returnchk);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, stationDatabase.stationList);
+        String[] stns = StationDatabase.stationList.toArray(new String[StationDatabase.stationList.size()]);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, stns);
 
         from.setThreshold(1);
         to.setThreshold(1);

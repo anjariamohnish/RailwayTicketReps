@@ -11,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginInfo {
 public static String session_id=null;
 public static String secretCode=null;
-public static String empId=null;
+public static String empId="001";
 
 
     public static  String getEmail()
