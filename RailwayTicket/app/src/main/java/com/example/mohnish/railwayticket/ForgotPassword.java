@@ -4,10 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -65,7 +62,7 @@ public class ForgotPassword extends AppCompatActivity {
                         {
                             progressDialog.dismiss();
                             Toast.makeText(ForgotPassword.this,"Password Reset Email Sent Successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ForgotPassword.this,login.class));
+                            startActivity(new Intent(ForgotPassword.this,Login.class));
                         }else{
                             progressDialog.dismiss();
                             Toast.makeText(ForgotPassword.this,"ERROR",Toast.LENGTH_SHORT).show();

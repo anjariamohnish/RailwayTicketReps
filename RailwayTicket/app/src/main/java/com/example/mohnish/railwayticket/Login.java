@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class login extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     TextView email, password;
 
@@ -36,7 +36,7 @@ public class login extends AppCompatActivity {
         findViewById(R.id.sign_up_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(login.this, register.class));
+                startActivity(new Intent(Login.this, register.class));
             }
         });
 
@@ -44,7 +44,7 @@ public class login extends AppCompatActivity {
         findViewById(R.id.btn_reset_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(login.this, ForgotPassword.class));
+                startActivity(new Intent(Login.this, ForgotPassword.class));
             }
         });
 
@@ -77,7 +77,7 @@ public class login extends AppCompatActivity {
                     password.setError("Enter Password");
                     return;
                 }
-                final ProgressDialog progressDoalog = new ProgressDialog(login.this);
+                final ProgressDialog progressDoalog = new ProgressDialog(Login.this);
 
                 progressDoalog.setMessage("loading....");
                 progressDoalog.setTitle("Log In");
@@ -92,17 +92,17 @@ public class login extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             progressDoalog.dismiss();
-                            startActivity(new Intent(login.this, MainActivity.class));
+                            startActivity(new Intent(Login.this, MainActivity.class));
                         } else {
                             progressDoalog.dismiss();
-                            Toast.makeText(login.this, "Unable to Login", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Unable to Login", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progressDoalog.dismiss();
-                        Toast.makeText(login.this, "Unable to Login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Unable to Login", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

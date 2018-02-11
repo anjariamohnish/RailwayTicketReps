@@ -14,7 +14,7 @@ import android.view.ViewGroup;
  * Created by Administrator on 10/02/2018.
  */
 
-public class BookingHistory extends Fragment {
+public class BookingHistory extends android.app.Fragment {
 
 
     @Nullable
@@ -22,6 +22,8 @@ public class BookingHistory extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bookinghistory,
                 container, false);
+
+
         return view;
     }
 

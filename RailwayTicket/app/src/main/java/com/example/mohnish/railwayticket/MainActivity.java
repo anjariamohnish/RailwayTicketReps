@@ -1,29 +1,19 @@
 package com.example.mohnish.railwayticket;
 
-import android.content.Context;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
-import com.example.mohnish.railwayticket.SupportFiles.EncryptionHelper;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,9 +23,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    ImageView qrimg;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +30,7 @@ public class MainActivity extends AppCompatActivity
 
 
         if (!LoginInfo.checkLogin()) {
-            startActivity(new Intent(MainActivity.this, login.class));
+            startActivity(new Intent(MainActivity.this, Login.class));
         }
 
 
@@ -63,26 +50,9 @@ public class MainActivity extends AppCompatActivity
 
         TextView useremail = headerView.findViewById(R.id.useremail);
         useremail.setText(LoginInfo.getEmail());
+
+        getFragmentManager().beginTransaction().replace(R.id.content_main, new Home()).commit();
         /*********************************************************************/
-
-        qrimg = (ImageView) findViewById(R.id.imageView3);
-
-        qrimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-              /*  IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
-                integrator.setPrompt("Scan a QR Code");
-                integrator.setCameraId(0);  // Use a specific camera of the device
-                integrator.setOrientationLocked(true);
-                integrator.setBeepEnabled(true);
-                integrator.setCaptureActivity(CaptureActivityPortrait.class);
-                integrator.initiateScan();*/
-
-                startActivityForResult(new Intent(MainActivity.this, QRScanner.class), 2);
-
-            }
-        });
 
 
     }
@@ -97,29 +67,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 3) {
-            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-        }
-
-
-        if (requestCode == 2) {
-            HashMap<String, String> hm = (HashMap<String, String>) data.getSerializableExtra("hashmap");
-            try {
-                StoreLocally(hm);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-   
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -128,21 +75,23 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = null;
         if (id == R.id.home) {
+            getFragmentManager().beginTransaction().replace(R.id.content_main, new Home()).commit();
 
         } else if (id == R.id.bookinghistory) {
-            fragment = new BookingHistory();
+
+            getFragmentManager().beginTransaction().replace(R.id.content_main, new BookingHistory()).commit();
 
         } else if (id == R.id.settings) {
             //   fragment = new BookingHistory();
         } else if (id == R.id.logout) {
 
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this,Login.class));
         } else if (id == R.id.feedback) {
+            getFragmentManager().beginTransaction().replace(R.id.content_main, new Feedback()).commit();
 
         }
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_main, fragment);
-        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
