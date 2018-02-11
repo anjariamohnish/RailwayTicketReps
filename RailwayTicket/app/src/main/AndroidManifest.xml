@@ -41,6 +41,9 @@
             android:name=".ForgotPassword"
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".QRScanner"/>
+
         <activity
             android:name=".CaptureActivityPortrait"
             android:screenOrientation="portrait"

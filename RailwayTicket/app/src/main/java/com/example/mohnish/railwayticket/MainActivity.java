@@ -71,13 +71,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
+              /*  IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
                 integrator.setPrompt("Scan a QR Code");
                 integrator.setCameraId(0);  // Use a specific camera of the device
                 integrator.setOrientationLocked(true);
                 integrator.setBeepEnabled(true);
                 integrator.setCaptureActivity(CaptureActivityPortrait.class);
-                integrator.initiateScan();
+                integrator.initiateScan();*/
+
+                startActivityForResult(new Intent(MainActivity.this, QRScanner.class), 2);
+
             }
         });
 
@@ -96,48 +99,26 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-            if (result.getContents() == null) {
-
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                long[] pattern = {0, 50, 50, 50, 50};
-                v.vibrate(pattern, -1);
 
 
-                String recd = result.getContents();
-                Log.d("TAG", recd);
-                try {
+        super.onActivityResult(requestCode, resultCode, data);
 
-                    String decrypted = EncryptionHelper.decipher(recd.substring(recd.length() - 12, recd.length()), recd.substring(0, recd.length() - 12));
-                    String[] qrData = decrypted.split(";");
-                    HashMap<String, String> hm = new HashMap<String, String>();
-
-                    hm.put("from", qrData[0]);
-                    hm.put("to", qrData[1]);
-                    hm.put("class", qrData[2]);
-                    hm.put("returnStatus", qrData[3]);
-                    hm.put("counterEmployee", qrData[4]);
-                    hm.put("dateTime", qrData[5]);
-                    hm.put("expiry", qrData[6]);
-                    hm.put("flag", qrData[7]);
-                    hm.put("passengerId", qrData[8]);
-
-                    StoreLocally(hm);
-
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, String.valueOf(e), Toast.LENGTH_LONG).show();
-                }
-
-
-                // store in local and wait for sync with firebase !!
-
-
-            }
+        if (requestCode == 3) {
+            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
         }
+
+
+        if (requestCode == 2) {
+            HashMap<String, String> hm = (HashMap<String, String>) data.getSerializableExtra("hashmap");
+            try {
+                StoreLocally(hm);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+   
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
