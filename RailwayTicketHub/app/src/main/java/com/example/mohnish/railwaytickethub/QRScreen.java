@@ -125,57 +125,8 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
                 chechDel = true;
                 ClearPin();
 
-              /*if (mPinFirstDigitEditText.hasFocus()) {
-                    mPinFirstDigitEditText.setText("");
-                    hashtable.remove(1);
-
-                } else if (mPinSecondDigitEditText.hasFocus()) {
-                    mPinSecondDigitEditText.setText("");
-                    hashtable.remove(2);
-
-                } else if (mPinThirdDigitEditText.hasFocus()) {
-                    mPinThirdDigitEditText.setText("");
-                    hashtable.remove(3);
-
-                } else if (mPinForthDigitEditText.hasFocus()) {
-                    mPinForthDigitEditText.setText("");
-                    hashtable.remove(4);
-
-                } else if (mPinFifthDigitEditText.hasFocus()) {
-                    mPinFifthDigitEditText.setText("");
-                    hashtable.remove(5);
-
-                } else if (mPinSixthDigitEditText.hasFocus()) {
-                    mPinSixthDigitEditText.setText("");
-                    hashtable.remove(6);
-
-                } else if (mPinSeventhDigitEditText.hasFocus()) {
-                    mPinSeventhDigitEditText.setText("");
-                    hashtable.remove(7);
-
-                }
-                Log.d("TAG", String.valueOf(hashtable.size()));
-                if (hashtable.size() == 1) {
-                    mPinFirstDigitEditText.requestFocus();
-                } else if (hashtable.size() == 2) {
-                    mPinSecondDigitEditText.requestFocus();
-                } else if (hashtable.size() == 3) {
-                    mPinThirdDigitEditText.requestFocus();
-                } else if (hashtable.size() == 4) {
-                    mPinForthDigitEditText.requestFocus();
-                } else if (hashtable.size() == 5) {
-                    mPinFifthDigitEditText.requestFocus();
-                } else if (hashtable.size() == 6) {
-                    mPinSixthDigitEditText.requestFocus();
-                } else if (hashtable.size() == 7) {
-                    mPinFirstDigitEditText.requestFocus();
-
-                }*/
-
             }
         }
-      Log.d("TAG", "=>"+String.valueOf(keyEvent));
-        Log.d("TAG", String.valueOf(keyCode==KeyEvent.KEYCODE_DEL));
 
         if (keyEvent.getAction() == KeyEvent.ACTION_UP && (!chechDel)) {
 
@@ -240,9 +191,6 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
         mPinFifthDigitEditText.setOnKeyListener(this);
         mPinSixthDigitEditText.setOnKeyListener(this);
         mPinSeventhDigitEditText.setOnKeyListener(this);
-
-
-
 
 
         new Thread() {
