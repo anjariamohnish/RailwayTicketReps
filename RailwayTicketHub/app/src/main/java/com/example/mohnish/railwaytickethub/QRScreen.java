@@ -118,11 +118,14 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
 
         boolean chechDel = false;
-        if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+
+       if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
 
             if (keyCode == KeyEvent.KEYCODE_DEL) {
                 chechDel = true;
-                if (mPinFirstDigitEditText.hasFocus()) {
+                ClearPin();
+
+              /*if (mPinFirstDigitEditText.hasFocus()) {
                     mPinFirstDigitEditText.setText("");
                     hashtable.remove(1);
 
@@ -167,12 +170,15 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
                 } else if (hashtable.size() == 7) {
                     mPinFirstDigitEditText.requestFocus();
 
-                }
+                }*/
 
             }
         }
+      Log.d("TAG", "=>"+String.valueOf(keyEvent));
+        Log.d("TAG", String.valueOf(keyCode==KeyEvent.KEYCODE_DEL));
 
         if (keyEvent.getAction() == KeyEvent.ACTION_UP && (!chechDel)) {
+
 
 
             //   Log.d("TAG",String.valueOf(hashtable.size()));
@@ -196,6 +202,7 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
                 progressDialog.show();
                 String secretCode = hashtable.get(1) + hashtable.get(2) + hashtable.get(3) + hashtable.get(4) + hashtable.get(5) + hashtable.get(6) + hashtable.get(7);
                CreateAlertBox(secretCode);
+
 
             }
         }
@@ -233,6 +240,11 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
         mPinFifthDigitEditText.setOnKeyListener(this);
         mPinSixthDigitEditText.setOnKeyListener(this);
         mPinSeventhDigitEditText.setOnKeyListener(this);
+
+
+
+
+
         new Thread() {
             public void run() {
                 SetListner();
@@ -290,6 +302,8 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
                         progressDialog.dismiss();
                         Snackbar.make(findViewById(android.R.id.content), "Your Trip is Started", Snackbar.LENGTH_SHORT)
                                 .show();
+                        ClearPin();
+
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -297,7 +311,7 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
 
                         hashtable.clear();
                         progressDialog.dismiss();
-
+                        ClearPin();
                         dialog.cancel();
                     }
                 });
@@ -364,5 +378,16 @@ public class QRScreen extends AppCompatActivity implements TextWatcher, View.OnK
 
     }
 
-
+private void ClearPin()
+{
+    mPinFirstDigitEditText.setText("");
+    mPinSecondDigitEditText.setText("");
+    mPinThirdDigitEditText.setText("");
+    mPinForthDigitEditText.setText("");
+    mPinFifthDigitEditText.setText("");
+    mPinSixthDigitEditText.setText("");
+    mPinSeventhDigitEditText.setText("");
+    hashtable.clear();
+    mPinFirstDigitEditText.requestFocus();
+}
 }

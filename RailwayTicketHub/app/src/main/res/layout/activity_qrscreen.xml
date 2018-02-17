@@ -53,8 +53,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/pin_first_edittext"
@@ -62,45 +62,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/pin_content_desc"
-                android:imeOptions="actionNext" />
+
+                android:imeOptions="actionNext"
+                android:textAllCaps="true" />
 
             <EditText
                 android:id="@+id/pin_second_edittext"
                 style="@style/pin_edittext_style2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/pin_content_desc" />
+                android:contentDescription="@string/pin_content_desc"
+                android:textAllCaps="true" />
 
             <EditText
                 android:id="@+id/pin_third_edittext"
                 style="@style/pin_edittext_style2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/pin_content_desc" />
+                android:contentDescription="@string/pin_content_desc"
+                android:textAllCaps="true" />
 
             <EditText
                 android:id="@+id/pin_forth_edittext"
                 style="@style/pin_edittext_style2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/pin_content_desc" />
+                android:contentDescription="@string/pin_content_desc"
+                android:textAllCaps="true" />
+
             <EditText
                 android:id="@+id/no"
                 style="@style/pin_edittext_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:textStyle="bold"
                 android:background="@null"
-                android:contentDescription="@string/pin_content_desc" />
+
+                android:contentDescription="@string/pin_content_desc"
+                android:text="-"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/pin_fifth_edittext"
                 style="@style/pin_edittext_style2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/pin_content_desc" />
-
+                android:contentDescription="@string/pin_content_desc"
+                android:textAllCaps="true" />
 
 
             <EditText
@@ -108,13 +115,16 @@
                 style="@style/pin_edittext_style2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/pin_content_desc" />
+                android:contentDescription="@string/pin_content_desc"
+                android:textAllCaps="true" />
+
             <EditText
                 android:id="@+id/pin_seveth_edittext"
                 style="@style/pin_edittext_style2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/pin_content_desc" />
+                android:contentDescription="@string/pin_content_desc"
+                android:textAllCaps="true" />
 
         </LinearLayout>
 
