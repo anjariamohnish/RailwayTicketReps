@@ -77,7 +77,7 @@ public class Home extends Fragment {
         out.close();
 
         DatabaseHandler db = new DatabaseHandler(Home.this.getActivity());
-        db.AddFile(FILENAME);
+        db.AddFile(FILENAME,string);
 
 
     }

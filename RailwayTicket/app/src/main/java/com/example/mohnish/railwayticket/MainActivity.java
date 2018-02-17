@@ -112,12 +112,12 @@ public class MainActivity extends AppCompatActivity
         String FILENAME = map.get("from").toString().replace("from=", "") + "-" + map.get("to").toString().replace("to=", "") + " " + map.get("dateTime").toString().replace("dateTime=", "").replace("/", "").replace(".", "").replace(":", "").trim();
         String string = map.get("from") + ";" + map.get("to") + ";" + map.get("class") + ";" + map.get("returnStatus") + ";" + map.get("counterEmployee") + ";" + map.get("dateTime") + ";" + map.get("expiry") + ";" + map.get("flag") + ";" + map.get("passengerId");
 
-        FileOutputStream out = openFileOutput(FILENAME, MODE_PRIVATE);
+     /*   FileOutputStream out = openFileOutput(FILENAME, MODE_PRIVATE);
         out.write(string.getBytes());
-        out.close();
+        out.close();*/
 
         DatabaseHandler db = new DatabaseHandler(this);
-        db.AddFile(FILENAME);
+        db.AddFile(FILENAME,string);
 
 
     }
