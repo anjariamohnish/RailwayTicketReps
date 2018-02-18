@@ -36,7 +36,7 @@ RecyclerView.Adapter adapter;
 
         mRecyclerView=view.findViewById(R.id.recylerView);
         mRecyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this.getActivity());
+        layoutManager=new LinearLayoutManager(this.getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setLayoutManager(layoutManager);
         adapter=new MainAdapter(ticketList);
         mRecyclerView.setAdapter(adapter);

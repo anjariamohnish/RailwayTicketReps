@@ -16,8 +16,8 @@ import java.util.List;
  * Created by Administrator on 17/02/2018.
  */
 
-public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter {
-    TextView textView;
+public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<MainAdapter.ViewHolder> {
+
     List<ticket> ticketList;
 
     public MainAdapter(List<ticket> ticketList) {
@@ -25,16 +25,18 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter 
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.ticket_row,null);
-        ViewHolder holder=new ViewHolder(v);
+    public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ticket_row, parent, false);
+        ViewHolder holder = new ViewHolder(v);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-holder.textView;
+    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
+
+        holder.textView.setText(ticketList.get(position).getTicketName());
+
     }
 
     @Override
@@ -42,11 +44,13 @@ holder.textView;
         return ticketList.size();
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder{
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView textView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView=(TextView) itemView.findViewById(R.id.ticketName);
+            textView = (TextView) itemView.findViewById(R.id.textview1);
         }
     }
 }
