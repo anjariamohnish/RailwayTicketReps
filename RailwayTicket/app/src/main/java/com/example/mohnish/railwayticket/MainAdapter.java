@@ -39,11 +39,11 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
 
     //    holder.textView.setText(ticketList.get(position).getTicketName());
-        holder.stations.setText(" Vile Parle - Andheri [Return]");
-        holder.creation.setText("10/02/2018 16:31:26");
-        holder.expiration.setText("11/02/2018");
 
-        holder.imageView.setImageResource(R.drawable.ic_blackberry_qr_code_variant);
+
+        holder.qrImageView.setImageResource(R.drawable.ic_blackberry_qr_code_variant);
+        holder.ticketIconImageView.setImageResource(R.drawable.ic_ticket);
+       holder.rightArrowImageView.setImageResource(R.drawable.ic_right_arrow);
     }
 
     @Override
@@ -54,20 +54,15 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView stations;
-        TextView creation;
-        TextView expiration;
-        ImageView imageView;
 
-
+        ImageView qrImageView;
+        ImageView ticketIconImageView;
+        ImageView rightArrowImageView;
         public ViewHolder(View itemView) {
             super(itemView);
-            stations = (TextView) itemView.findViewById(R.id.stations);
-            creation = (TextView) itemView.findViewById(R.id.creation);
-            expiration = (TextView) itemView.findViewById(R.id.expiration);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView2);
-
-
+            qrImageView = (ImageView) itemView.findViewById(R.id.qrImageView);
+            ticketIconImageView=(ImageView)itemView.findViewById(R.id.ticketIconImageView);
+            rightArrowImageView=(ImageView)itemView.findViewById(R.id.rightArrowImageView);
         }
     }
 }
