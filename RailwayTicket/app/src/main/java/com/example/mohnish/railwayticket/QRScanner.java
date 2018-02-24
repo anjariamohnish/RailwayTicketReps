@@ -69,6 +69,12 @@ public class QRScanner extends Activity {
                     hm.put("expiry", qrData[6]);
                     hm.put("flag", qrData[7]);
                     hm.put("passengerId", qrData[8]);
+
+                    String FILENAME = hm.get("from").toString().replace("from=", "") + "-" + hm.get("to").toString().replace("to=", "") + " " + hm.get("dateTime").toString().replace("dateTime=", "").replace("/", "").replace(".", "").replace(":", "").trim();
+
+                    DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                    db.AddFile(FILENAME,recd);
+
                     Intent intent = new Intent();
                     intent.putExtra("hashmap", hm);
                     setResult(2, intent);
