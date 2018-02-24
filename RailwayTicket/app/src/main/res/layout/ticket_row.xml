@@ -5,255 +5,255 @@
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="60dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginTop="60dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     card_view:cardBackgroundColor="@color/common_google_signin_btn_text_dark_default"
     card_view:cardCornerRadius="10dp"
     card_view:cardElevation="10dp"
     card_view:contentPadding="5dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginLeft="2dp">
 
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="2dp">
-
-                <ImageView
-                    android:id="@+id/ticketIconImageView"
-                    android:layout_width="92dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:rotation="-25"
-                    card_view:srcCompat="@drawable/ic_ticket"
-                    tools:ignore="VectorDrawableCompat" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="139dp"
-                    android:layout_height="wrap_content"
-                    android:text="DATE "
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="8dp"
-                    android:text="src-dest"
-                    android:textAlignment="textEnd"
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/ticketIconImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="8dp"
+            android:rotation="-25"
+            card_view:srcCompat="@drawable/ic_ticket"
+            tools:ignore="VectorDrawableCompat" />
 
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="8dp">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Source"
-                    android:textAllCaps="true"
-                    android:textColor="#808080"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:gravity="center_horizontal"
-                    android:text="Destination"
-                    android:textAllCaps="true"
-                    android:textColor="#808080"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="8dp"
-                android:paddingTop="4dp">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="SRC"
-
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="SRC" />
-
-                <ImageView
-                    android:id="@+id/rightArrowImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:srcCompat="@drawable/ic_right_arrow" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:paddingRight="8dp"
-                    android:text="DES"
-
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="DES" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Ticket Type"
-                    android:textAllCaps="true"
-                    android:textColor="#808080"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:gravity="center_horizontal"
-                    android:text="Route"
-                    android:textAllCaps="true"
-                    android:textColor="#808080"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="8dp"
-                android:paddingTop="4dp">
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Type"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:gravity="center_horizontal"
-                    android:text="routes"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Passengers"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:gravity="center_horizontal"
-                    android:text="Valid Till"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="4dp"
-                android:paddingTop="8dp">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Num"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:gravity="center_horizontal"
-                    android:text="date/time"
-                    android:textColor="#808080"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </TableRow>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ticketIconImageView"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/ticketIconImageView"
+            android:text="DATE "
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
 
-        </TableLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="11dp"
+            android:layout_weight="1"
+            android:paddingRight="8dp"
+            android:text="src-dest"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView6"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:text="Source"
+            android:textAllCaps="true"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_horizontal"
+            android:text="Destination"
+            android:textAllCaps="true"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/ticketIconImageView"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="17dp"
+            android:gravity="center_horizontal"
+            android:text="SRC"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="SRC" />
+
+        <ImageView
+            android:id="@+id/rightArrowImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView6"
+            android:layout_centerHorizontal="true" />
+
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/rightArrowImageView"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginStart="14dp"
+            android:gravity="center_horizontal"
+
+            android:text="DES"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="DES" />
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_below="@+id/rightArrowImageView"
+            android:layout_marginTop="23dp"
+            android:gravity="center_horizontal"
+            android:text="Ticket Type"
+            android:textAllCaps="true"
+            android:textColor="#808080"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView8"
+            android:layout_alignBottom="@+id/textView8"
+            android:layout_alignEnd="@+id/textView2"
+            android:layout_marginEnd="11dp"
+            android:gravity="center_horizontal"
+            android:text="Route"
+            android:textAllCaps="true"
+            android:textColor="#808080"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_below="@+id/textView8"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="Type"
+            android:textColor="#808080"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView10"
+            android:layout_alignBottom="@+id/textView10"
+            android:layout_alignStart="@+id/textView9"
+            android:gravity="center_horizontal"
+            android:text="routes"
+            android:textColor="#808080"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView8"
+            android:layout_below="@+id/textView10"
+            android:layout_marginTop="27dp"
+            android:gravity="center_horizontal"
+            android:text="Passengers"
+            android:textColor="#808080"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView12"
+            android:layout_alignBottom="@+id/textView12"
+            android:layout_alignEnd="@+id/textView11"
+            android:gravity="center_horizontal"
+            android:text="Valid Till"
+            android:textColor="#808080"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView10"
+            android:layout_below="@+id/textView12"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:text="Num"
+            android:textColor="#808080"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView14"
+            android:layout_alignBottom="@+id/textView14"
+            android:layout_alignStart="@+id/textView13"
+            android:layout_column="2"
+            android:gravity="center_horizontal"
+            android:text="date/time"
+            android:textColor="#808080"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
 
         <ImageView
             android:id="@+id/qrImageView"
-            android:layout_width="140dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="30dp" />
-    </LinearLayout>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+
+    </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>
