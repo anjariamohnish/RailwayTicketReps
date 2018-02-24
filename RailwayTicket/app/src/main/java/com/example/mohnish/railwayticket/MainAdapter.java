@@ -2,6 +2,7 @@ package com.example.mohnish.railwayticket;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mohnish.railwayticket.SupportFiles.ticket;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
         holder.src.setText(ticketList.get(position).getSrc());
         holder.des.setText(ticketList.get(position).getDes());
         holder.type.setText(ticketList.get(position).getType());
-        holder.route.setText(ticketList.get(position).getRoute());
+        holder.route.setText(ticketList.get(position).getclassType());
         holder.passengerNumber.setText(ticketList.get(position).getNumberOfPassenger());
         holder.validity.setText(ticketList.get(position).getValidity());
 
@@ -74,6 +73,7 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
         public ViewHolder(View itemView) {
             super(itemView);
             qrImageView = (ImageView) itemView.findViewById(R.id.qrImageView);
+
             ticketIconImageView = (ImageView) itemView.findViewById(R.id.ticketIconImageView);
             rightArrowImageView = (ImageView) itemView.findViewById(R.id.rightArrowImageView);
 
@@ -84,9 +84,17 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
             src = (TextView) itemView.findViewById(R.id.src);
             des = (TextView) itemView.findViewById(R.id.des);
             type = (TextView) itemView.findViewById(R.id.type);
-            route = (TextView) itemView.findViewById(R.id.route);
+            route = (TextView) itemView.findViewById(R.id.classType);
             passengerNumber = (TextView) itemView.findViewById(R.id.passengerNumber);
             validity = (TextView) itemView.findViewById(R.id.validity);
+
+            qrImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                 // onclick open Popup Windows
+                    
+                }
+            });
 
         }
     }

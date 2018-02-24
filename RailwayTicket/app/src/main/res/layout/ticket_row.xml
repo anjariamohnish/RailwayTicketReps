@@ -149,7 +149,7 @@
             android:layout_alignEnd="@+id/srcDest"
             android:layout_marginEnd="11dp"
 
-            android:text="Route"
+            android:text="CLASS"
             android:textAllCaps="true"
             android:textColor="#808080"
             android:textSize="11sp"
@@ -170,13 +170,13 @@
 
 
         <TextView
-            android:id="@+id/route"
+            android:id="@+id/classType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/type"
             android:layout_alignBottom="@+id/type"
             android:layout_alignStart="@+id/textView9"
-            android:text="routes"
+            android:text="Class"
             android:textColor="#808080"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -202,7 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView12"
             android:layout_alignBottom="@+id/textView12"
-            android:layout_alignEnd="@+id/route"
+            android:layout_alignEnd="@+id/classType"
 
             android:text="Validity"
             android:textAllCaps="true"

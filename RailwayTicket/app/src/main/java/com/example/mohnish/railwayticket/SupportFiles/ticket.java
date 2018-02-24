@@ -8,17 +8,17 @@ import android.graphics.Bitmap;
 
 public class ticket {
 
-    private String creation, src, sources, des, destination, type, route, numberOfPassenger, validity;
+    private String creation, src, sources, des, destination, type, classType, numberOfPassenger, validity;
     private Bitmap qrBitmap;
 
-    public ticket(String creation, String src, String sources, String des, String destination, String type, String route, String numberOfPassenger, String validity, Bitmap qrBitmap) {
+    public ticket(String creation, String src, String sources, String des, String destination, String type, String classType, String numberOfPassenger, String validity, Bitmap qrBitmap) {
         this.creation = creation;
         this.src = src;
         this.sources = sources;
         this.des = des;
         this.destination = destination;
         this.type = type;
-        this.route = route;
+        this.classType = classType;
         this.numberOfPassenger = numberOfPassenger;
         this.validity = validity;
         this.qrBitmap = qrBitmap;
@@ -48,8 +48,8 @@ public class ticket {
         return type;
     }
 
-    public String getRoute() {
-        return route;
+    public String getclassType() {
+        return classType;
     }
 
     public String getNumberOfPassenger() {
