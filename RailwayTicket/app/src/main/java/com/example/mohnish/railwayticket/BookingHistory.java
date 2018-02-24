@@ -1,5 +1,6 @@
 package com.example.mohnish.railwayticket;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,26 +20,56 @@ import java.util.List;
 
 public class BookingHistory extends android.app.Fragment {
 
-    List<ticket> ticketList=new ArrayList<>();
-RecyclerView mRecyclerView;
-RecyclerView.LayoutManager layoutManager;
-RecyclerView.Adapter adapter;
+    List<ticket> ticketList = new ArrayList<>();
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bookinghistory,
                 container, false);
-        ticketList.add(new ticket("1","det1"));
-        ticketList.add(new ticket("2","det1"));
-        ticketList.add(new ticket("3","det1"));
+
+       /* ticketList.add(
+                new ticket("10/02/2018",
+                        "VLP",
+                        "Vile Parle",
+                        "AND",
+                        "Andheri",
+                        "Single",
+                        "Western",
+                        "1",
+                        "11/02/2018",
+                        null
+                ));
 
 
-        mRecyclerView=view.findViewById(R.id.recylerView);
+        ticketList.add(
+                new ticket("10/02/2018",
+                        "VLP",
+                        "Vile Parle",
+                        "AND",
+                        "Andheri",
+                        "Single",
+                        "Western",
+                        "1",
+                        "11/02/2018",
+                        null
+                ));
+*/
+       DatabaseHandler databaseHandler=new DatabaseHandler(getActivity());
+        try {
+            ticketList=databaseHandler.GetFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mRecyclerView = view.findViewById(R.id.recylerView);
         mRecyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this.getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
-        adapter=new MainAdapter(ticketList,getActivity().getApplicationContext());
+        adapter = new MainAdapter(ticketList, getActivity().getApplicationContext());
         mRecyclerView.setAdapter(adapter);
 
         return view;

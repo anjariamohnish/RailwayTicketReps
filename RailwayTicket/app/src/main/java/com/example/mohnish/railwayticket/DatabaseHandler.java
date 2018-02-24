@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.mohnish.railwayticket.SupportFiles.EncryptionHelper;
 import com.example.mohnish.railwayticket.SupportFiles.ticket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +19,13 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "FileManager";
     private static final String TABLE_FILEDATA = "FileData";
     private static final String KEY_NAME = "name";
     private static final String KEY_DATA = "data";
+    private static final SimpleDateFormat rawFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private static final SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
 
 
     public DatabaseHandler(Context context) {
@@ -59,23 +62,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    List<ticket> GetFile() {
-        List<ticket> files = new ArrayList<ticket>();
+    List<ticket> GetFile() throws Exception {
+        List<ticket> tickets = new ArrayList<ticket>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_FILEDATA;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                files.add(new ticket(cursor.getString(0), cursor.getString(1)));
+                String returnStatus = "Single";
+
+                String[] qrData = EncryptionHelper.decipher(
+                        cursor.getString(1).substring(cursor.getString(1).length() - 12, cursor.getString(1).length()),
+                        cursor.getString(1).substring(0, cursor.getString(1).length() - 12
+                        )).split(";");
+
+
+                if (qrData[3].equals("1")) {
+                    returnStatus = "Return";
+                }
+                tickets.add(new ticket(
+                        format.format(rawFormatter.parse(qrData[5])),
+                        "nil",
+                        qrData[0],
+                        "nil",
+                        qrData[1],
+                        returnStatus,
+                        "Western Railway",
+                        "1",
+                        format.format(rawFormatter.parse(qrData[6])),
+                        null
+                ));
+
 
 
             } while (cursor.moveToNext());
         }
 
-        return files;
+        return tickets;
     }
 }
