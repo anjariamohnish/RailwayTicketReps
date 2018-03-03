@@ -35,15 +35,14 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
     }
 
     @Override
-    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(MainAdapter.ViewHolder holder, final int position) {
 
 
-        holder.qrImageView.setImageResource(R.drawable.ic_blackberry_qr_code_variant);
+        holder.qrImageView.setImageBitmap(ticketList.get(position).getQrBitmap());
         holder.ticketIconImageView.setImageResource(R.drawable.ic_ticket);
         holder.rightArrowImageView.setImageResource(R.drawable.ic_right_arrow);
-
         holder.dateCreation.setText(ticketList.get(position).getCreation());
-        holder.srcDest.setText(ticketList.get(position).getSrc()+"-"+ticketList.get(position).getDes());
+        holder.srcDest.setText(ticketList.get(position).getSrc() + "-" + ticketList.get(position).getDes());
         holder.source.setText(ticketList.get(position).getSources());
         holder.destination.setText(ticketList.get(position).getDestination());
         holder.src.setText(ticketList.get(position).getSrc());
@@ -53,6 +52,12 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
         holder.passengerNumber.setText(ticketList.get(position).getNumberOfPassenger());
         holder.validity.setText(ticketList.get(position).getValidity());
 
+        holder.qrImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("TAG", String.valueOf(ticketList.get(position).getQrBitmap()));
+            }
+        });
 
     }
 
@@ -88,13 +93,13 @@ public class MainAdapter extends android.support.v7.widget.RecyclerView.Adapter<
             passengerNumber = (TextView) itemView.findViewById(R.id.passengerNumber);
             validity = (TextView) itemView.findViewById(R.id.validity);
 
-            qrImageView.setOnClickListener(new View.OnClickListener() {
+           /* qrImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                  // onclick open Popup Windows
                     
                 }
-            });
+            });*/
 
         }
     }

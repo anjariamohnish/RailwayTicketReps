@@ -106,7 +106,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "1",
                         format.format(rawFormatter.parse(qrData[6])),
                         //TextToImageEncode(cursor.getString(1))
-                        null
+                        TextToImageEncode(cursor.getString(1))
                 ));
 
 
